@@ -1,14 +1,16 @@
 plugins {
     id 'java'
-    id 'application'
-    id 'groovy'
-    id 'org.javamodularity.moduleplugin' version '1.8.12'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
-    id 'org.beryx.jlink' version '2.25.0'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
-group 'Pegas'
-version '1.0-SNAPSHOT'
+wrapper{
+    gradleVersion("8.6")
+}
+
+group = 'Pegas'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
@@ -16,44 +18,31 @@ repositories {
 
 ext {
     junitVersion = '5.9.2'
+    javaVersion = 17
+    currentDate = LocalDate.now()
 }
-
-sourceCompatibility = '17'
-targetCompatibility = '17'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-application {
-    mainModule = 'pegas.spring_hw7_2'
-    mainClass = 'pegas.spring_hw7_2.HelloApplication'
-}
-
-javafx {
-    version = '17.0.6'
-    modules = ['javafx.controls', 'javafx.fxml']
-}
+//application {
+//    mainModule = 'pegas.gradle'
+//}
 
 dependencies {
-    implementation('org.apache.groovy:groovy:4.0.10')
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.postgresql:postgresql'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.security:spring-security-test'
 }
 
-test {
+test{
     useJUnitPlatform()
-}
-
-jlink {
-    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
-        name = 'app'
-    }
-}
-
-jlinkZip {
-    group = 'distribution'
 }

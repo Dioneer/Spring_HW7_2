@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:18080/realms/contactBox
+            user-name-attribute: preferred_username
+        registration:
+          sand-image-app-client-credentials:
+            provider: keycloak
+            authorization-grant-type: client_credentials
+            client-id: sand_image_app
+            client-secret: yxqYKajj2nnCv0FLTJSeUvCGySpCgzfp
+            scope:
+              - sand_image
+          sand-image-app-authorization-code:
+            provider: keycloak
+            client-id: sand_image_app
+            client-secret: yxqYKajj2nnCv0FLTJSeUvCGySpCgzfp
+            scope:
+              - sand_image
+              - openid
+              - microprofile-jwt

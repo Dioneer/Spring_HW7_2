@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ApplicationRunner1" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="Pegas.ApplicationRunner" />
+    <module name="image-server.main" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="Pegas.presentation.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

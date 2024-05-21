@@ -1,0 +1,9 @@
+app:
+  image:
+    path: "./"
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:18080/realms/contactBox
